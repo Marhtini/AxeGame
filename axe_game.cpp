@@ -38,7 +38,6 @@ int main(){
         (r_axe_x >= l_circ_x)
     };
     
-
     SetTargetFPS(60);
     while(WindowShouldClose() != true){
         BeginDrawing();
@@ -98,5 +97,4 @@ int main(){
 
         EndDrawing();
     };
-
 }
