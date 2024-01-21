@@ -14,7 +14,7 @@ int main(){
 
     // circle edges
     int l_circ_x{circ_x - circ_rad};
-    int r_Circ_x{circ_x + circ_rad};
+    int r_circ_x{circ_x + circ_rad};
     int u_circ_y{circ_y - circ_rad};
     int b_circ_y{circ_y + circ_rad};
 
@@ -27,22 +27,49 @@ int main(){
     int l_axe_x{axe_x};
     int r_axe_x{axe_x + axe_len};
     int u_axe_y{axe_y};
-    int b_axe_Y{axe_y + axe_len};
+    int b_axe_y{axe_y + axe_len};
 
     int direction{10};
 
-    bool colided{true};
+    bool colided{
+        (b_axe_y >= u_circ_y) && 
+        (u_axe_y <= b_circ_y) && 
+        (l_axe_x <= r_circ_x) && 
+        (r_axe_x >= l_circ_x)
+    };
+    
 
     SetTargetFPS(60);
     while(WindowShouldClose() != true){
         BeginDrawing();
         ClearBackground(WHITE);
 
-        if (!colided){
+        if (colided){
             DrawText("YOU DIED.", 400, 200, 20, RED);
         }
         else{
             // game logic begins
+
+            // updates edges for collision detection
+            // circle edges
+            l_circ_x = circ_x - circ_rad;
+            r_circ_x = circ_x + circ_rad;
+            u_circ_y = circ_y - circ_rad;
+            b_circ_y = circ_y + circ_rad;
+
+            // axe edges
+            l_axe_x = axe_x;
+            r_axe_x = axe_x + axe_len;
+            u_axe_y = axe_y;
+            b_axe_y = axe_y + axe_len;
+
+            // update collided value
+            colided =
+                (b_axe_y >= u_circ_y) && 
+                (u_axe_y <= b_circ_y) && 
+                (l_axe_x <= r_circ_x) && 
+                (r_axe_x >= l_circ_x);
+
             DrawCircle(circ_x, circ_y, circ_rad, BLUE);
             DrawRectangle(axe_x, axe_y, axe_len, axe_len, RED);
 
