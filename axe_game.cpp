@@ -10,12 +10,27 @@ int main(){
     //  circle coordinates
     int circ_x{200};
     int circ_y{200};
+    int circ_rad{25};
+
+    // circle edges
+    int l_circ_x{circ_x - circ_rad};
+    int r_Circ_x{circ_x + circ_rad};
+    int u_circ_y{circ_y - circ_rad};
+    int b_circ_y{circ_y + circ_rad};
 
     // axe coordinates
     int axe_x{400};
     int axe_y{0};
+    int axe_len{50};
+
+    // axe edges
+    int l_axe_x{axe_x};
+    int r_axe_x{axe_x + axe_len};
+    int u_axe_y{axe_y};
+    int b_axe_Y{axe_y + axe_len};
 
     int direction{10};
+
 
     SetTargetFPS(60);
     while(WindowShouldClose() != true){
@@ -23,8 +38,8 @@ int main(){
         ClearBackground(WHITE);
 
         // game logic begins
-        DrawCircle(circ_x, circ_y, 25, BLUE);
-        DrawRectangle(axe_x, axe_y, 50, 50, RED);
+        DrawCircle(circ_x, circ_y, circ_rad, BLUE);
+        DrawRectangle(axe_x, axe_y, axe_len, axe_len, RED);
 
         // move the axe
         axe_y += direction;
@@ -36,7 +51,7 @@ int main(){
             circ_x += 10;
         }
 
-        if (IsKeyDown(KEY_A) && circ_x > 0){
+        if (IsKeyDown(KEY_A && circ_x > 0)){
             circ_x -= 10;
         }
 
