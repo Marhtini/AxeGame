@@ -31,36 +31,42 @@ int main(){
 
     int direction{10};
 
+    bool colided{true};
 
     SetTargetFPS(60);
     while(WindowShouldClose() != true){
         BeginDrawing();
         ClearBackground(WHITE);
 
-        // game logic begins
-        DrawCircle(circ_x, circ_y, circ_rad, BLUE);
-        DrawRectangle(axe_x, axe_y, axe_len, axe_len, RED);
-
-        // move the axe
-        axe_y += direction;
-        if(axe_y > h || axe_y < 0){
-            direction = -direction;
+        if (!colided){
+            DrawText("YOU DIED.", 400, 200, 20, RED);
         }
+        else{
+            // game logic begins
+            DrawCircle(circ_x, circ_y, circ_rad, BLUE);
+            DrawRectangle(axe_x, axe_y, axe_len, axe_len, RED);
 
-        if (IsKeyDown(KEY_D) && circ_x < w){
-            circ_x += 10;
-        }
+            // move the axe
+            axe_y += direction;
+            if(axe_y > h || axe_y < 0){
+                direction = -direction;
+            }
 
-        if (IsKeyDown(KEY_A && circ_x > 0)){
-            circ_x -= 10;
-        }
+            if (IsKeyDown(KEY_D) && circ_x < w){
+                circ_x += 10;
+            }
 
-        if (IsKeyDown(KEY_S) && circ_y < h){
-            circ_y += 10;
-        }
+            if (IsKeyDown(KEY_A) && circ_x > 0){
+                circ_x -= 10;
+            }
 
-        if (IsKeyDown(KEY_W) && circ_y > 0){
-            circ_y -= 10;
+            if (IsKeyDown(KEY_S) && circ_y < h){
+                circ_y += 10;
+            }
+
+            if (IsKeyDown(KEY_W) && circ_y > 0){
+                circ_y -= 10;
+            }
         }
 
         EndDrawing();
